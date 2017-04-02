@@ -21,14 +21,14 @@
     
     <dependencies>
         <dependency>
-            <groupId>Lib</groupId>
-            <artifactId>Entities</artifactId>
-            <version>1.6</version>
-        </dependency>
-        <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>Lib</groupId>
+            <artifactId>Entities</artifactId>
+            <version>1.7</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
