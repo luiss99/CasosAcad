@@ -5,9 +5,11 @@
  */
 package SessionBeans;
 
+
 import Entidades.TipoRequisito;
 import java.util.List;
 import javax.ejb.Local;
+
 
 /**
  *

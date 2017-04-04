@@ -29,10 +29,6 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(ManagedBean.PasoMB.class);
-        resources.add(ManagedBean.RequisitoMB.class);
-        resources.add(ManagedBean.TipoPasoMB.class);
-        resources.add(ManagedBean.TipoRequisitoMB.class);
     }
     
 }

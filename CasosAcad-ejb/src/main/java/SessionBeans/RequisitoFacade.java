@@ -6,9 +6,11 @@
 package SessionBeans;
 
 import Entidades.Requisito;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 
 /**
  *
@@ -27,6 +29,10 @@ public class RequisitoFacade extends AbstractFacade<Requisito> implements Requis
 
     public RequisitoFacade() {
         super(Requisito.class);
+    }
+
+    public List<Requisito> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

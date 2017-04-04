@@ -5,26 +5,30 @@
  */
 package ManagedBean;
 
+import Entidades.TipoRequisito;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import SessionBeans.TipoRequisitoFacade;
+import java.util.List;
 import javax.ejb.EJB;
-import javax.ws.rs.Path;
+import javax.faces.bean.ViewScoped;
+
         
 /**
  *
  * @author Kira Luis
  */
 @Named(value = "tipoRequisitoMB")
-@RequestScoped
-@Path("tiporequisito")
+@ViewScoped
 public class TipoRequisitoMB {
 
     @EJB
-    TipoRequisitoFacade tipoRequisitoFacade;
+   private TipoRequisitoFacade tipoRequisitoFacade;
     
     public TipoRequisitoMB() {
     }
     
+    public List<TipoRequisito> getFindAll() {
+        return tipoRequisitoFacade.findAll();
+    }
 }
+

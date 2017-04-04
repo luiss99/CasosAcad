@@ -5,10 +5,13 @@
  */
 package ManagedBean;
 
+import Entidades.TipoPaso;
 import SessionBeans.TipoPasoFacade;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.ws.rs.Path;
 
 /**
@@ -16,15 +19,16 @@ import javax.ws.rs.Path;
  * @author Kira Luis
  */
 @Named(value = "tipoPasoMB")
-@RequestScoped
-@Path("tipopaso")
+@ViewScoped
 public class TipoPasoMB {
 
     @EJB
-    TipoPasoFacade tipoPasoFacade;
+    private TipoPasoFacade tipoPasoFacade;
     
     
     public TipoPasoMB() {
     }
-    
+     public List<TipoPaso> getFindAll() {
+        return tipoPasoFacade.findAll();
+    }
 }

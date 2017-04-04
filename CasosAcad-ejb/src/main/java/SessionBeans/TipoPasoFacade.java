@@ -5,10 +5,13 @@
  */
 package SessionBeans;
 
+
 import Entidades.TipoPaso;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 
 /**
  *
@@ -27,6 +30,10 @@ public class TipoPasoFacade extends AbstractFacade<TipoPaso> implements TipoPaso
 
     public TipoPasoFacade() {
         super(TipoPaso.class);
+    }
+
+    public List<TipoPaso> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

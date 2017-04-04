@@ -5,25 +5,31 @@
  */
 package ManagedBean;
 
+import Entidades.Paso;
 import SessionBeans.PasoFacade;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.ws.rs.Path;
+
 
 /**
  *
  * @author Kira Luis
  */
 @Named(value = "pasoMB")
-@RequestScoped
-@Path("paso")
+@ViewScoped
+
 public class PasoMB {
 
     @EJB
-    PasoFacade pasoFacade;
+    private PasoFacade pasoFacade;
     
     public PasoMB() {
     }
-    
+     public List<Paso> getFindAll() {
+        return pasoFacade.findAll();
+    }
 }
