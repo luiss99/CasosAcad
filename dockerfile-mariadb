@@ -1,0 +1,9 @@
+FROM mariadb:latest
+MAINTAINER Luis Siguenza
+
+ADD my.cnf /etc/mysql/my.cnf
+ADD bd.sql /docker-entrypoint-initdb.d/bd.sql
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+EXPOSE 3306
+CMD ["mysqld"]

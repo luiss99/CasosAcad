@@ -1,0 +1,30 @@
+version: '3'
+services: 
+ mariadb:
+  build: 
+   context: .
+   dockerfile: dockerfile-mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: 'admin'
+  ports:
+    - '3306:3306'
+  volumes:
+    - Users\Kira Luis\Documents\Docker\TPI\BD:/var/lib/mysql
+ 
+ payara:
+  build: 
+   context: .
+   dockerfile: dockerfile-payara
+  depends_on:
+  - mariadb
+  links:
+  - mariadb
+  entrypoint:
+     - /opt/payara41/bin/asadmin
+     - start-domain
+     - -v
+  ports:
+    - '8080:8080'
+    - '4848:4848'
+    - '8181:8181'
+  

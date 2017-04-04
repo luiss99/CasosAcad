@@ -1,0 +1,20 @@
+FROM payara/server-full
+
+MAINTAINER Luis Siguenza
+
+ENV DEPLOY_PATH CasosAcad/CasosAcad-ear/target/CasosAcad-ear-1.0-SNAPSHOT.ear
+
+ADD mariadb-java-client-1.5.8.jar /opt/payara41/glassfish/domains/domain1/lib/
+ADD $DEPLOY_PATH /opt/payara41/glassfish/domains/domain1/autodeploy/
+
+RUN \
+ $PAYARA_PATH/bin/asadmin start-domain && \
+ $PAYARA_PATH/bin/asadmin create-jdbc-connection-pool --user admin --passwordfile /opt/pwdfile \
+ --datasourceclassname org.mariadb.jdbc.MariaDbDataSource --restype javax.sql.DataSource --steadypoolsize=2 --maxpoolsize=2 \
+  --property user=root:password=admin:DataBaseName=casosacadtpi135:ServerName=172.19.0.2:port=3306 tpi2017Pool && \
+ $PAYARA_PATH/bin/asadmin create-jdbc-resource --user admin --passwordfile /opt/pwdfile \
+ --connectionpoolid tpi2017Pool --enabled=true jdbc/tpi2017Resource
+    
+EXPOSE 4848 8080
+
+CMD ["asadmin", "start-domain", "-v"]  
