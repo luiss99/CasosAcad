@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PasoCreateDlg" widgetVar="PasoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePasoTitle}">
+            <h:form id="PasoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pasoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePasoLabel_pasoPK_idPaso}" for="pasoPK_idPaso" />
+                        <p:inputText id="pasoPK_idPaso" value="#{pasoController.selected.pasoPK.idPaso}" title="#{bundle.CreatePasoTitle_pasoPK_idPaso}" required="true" requiredMessage="#{bundle.CreatePasoRequiredMessage_pasoPK_idPaso}"/>
+                        <p:outputLabel value="#{bundle.CreatePasoLabel_descripcionpaso}" for="descripcionpaso" />
+                        <p:inputText id="descripcionpaso" value="#{pasoController.selected.descripcionpaso}" title="#{bundle.CreatePasoTitle_descripcionpaso}" required="true" requiredMessage="#{bundle.CreatePasoRequiredMessage_descripcionpaso}"/>
+                        <p:outputLabel value="#{bundle.CreatePasoLabel_fechainicio}" for="fechainicio" />
+                        <p:calendar id="fechainicio" pattern="MM/dd/yyyy" value="#{pasoController.selected.fechainicio}" title="#{bundle.EditPasoTitle_fechainicio}" required="true" requiredMessage="#{bundle.EditPasoRequiredMessage_fechainicio}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePasoLabel_fechasfinal}" for="fechasfinal" />
+                        <p:calendar id="fechasfinal" pattern="MM/dd/yyyy" value="#{pasoController.selected.fechasfinal}" title="#{bundle.EditPasoTitle_fechasfinal}" required="true" requiredMessage="#{bundle.EditPasoRequiredMessage_fechasfinal}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePasoLabel_estadopaso}" for="estadopaso" />
+                        <p:inputText id="estadopaso" value="#{pasoController.selected.estadopaso}" title="#{bundle.CreatePasoTitle_estadopaso}" required="true" requiredMessage="#{bundle.CreatePasoRequiredMessage_estadopaso}"/>
+                        <p:outputLabel value="#{bundle.CreatePasoLabel_tipoPaso}" for="tipoPaso" />
+                        <p:selectOneMenu id="tipoPaso" value="#{pasoController.selected.tipoPaso}" required="true" requiredMessage="#{bundle.EditPasoRequiredMessage_tipoPaso}">
+                            <f:selectItems value="#{tipoPasoController.itemsAvailableSelectOne}"
+                                           var="tipoPasoItem"
+                                           itemValue="#{tipoPasoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pasoController.create}" value="#{bundle.Save}" update="display,:PasoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PasoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PasoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
