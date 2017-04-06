@@ -5,12 +5,17 @@
  */
 package ManagedBean;
 
+import Entidades.TipoRequisito;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import SessionBeans.TipoRequisitoFacade;
+import java.util.List;
 import javax.ejb.EJB;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
         
 /**
  *
@@ -23,6 +28,13 @@ public class TipoRequisitoMB {
 
     @EJB
     TipoRequisitoFacade tipoRequisitoFacade;
+    
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<TipoRequisito> findAll() {
+        return tipoRequisitoFacade.findAll();
+    }
+    
     
     public TipoRequisitoMB() {
     }

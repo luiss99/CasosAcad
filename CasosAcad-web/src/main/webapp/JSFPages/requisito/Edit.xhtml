@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RequisitoEditDlg" widgetVar="RequisitoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRequisitoTitle}">
+            <h:form id="RequisitoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{requisitoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRequisitoLabel_requisitoPK_idRequisito}" for="requisitoPK_idRequisito" />
+                        <p:inputText id="requisitoPK_idRequisito" value="#{requisitoController.selected.requisitoPK.idRequisito}" title="#{bundle.EditRequisitoTitle_requisitoPK_idRequisito}" required="true" requiredMessage="#{bundle.EditRequisitoRequiredMessage_requisitoPK_idRequisito}"/>
+                        <p:outputLabel value="#{bundle.EditRequisitoLabel_descripcionrequisito}" for="descripcionrequisito" />
+                        <p:inputText id="descripcionrequisito" value="#{requisitoController.selected.descripcionrequisito}" title="#{bundle.EditRequisitoTitle_descripcionrequisito}" required="true" requiredMessage="#{bundle.EditRequisitoRequiredMessage_descripcionrequisito}"/>
+                        <p:outputLabel value="#{bundle.EditRequisitoLabel_nombrerequisito}" for="nombrerequisito" />
+                        <p:inputText id="nombrerequisito" value="#{requisitoController.selected.nombrerequisito}" title="#{bundle.EditRequisitoTitle_nombrerequisito}" required="true" requiredMessage="#{bundle.EditRequisitoRequiredMessage_nombrerequisito}"/>
+                        <p:outputLabel value="#{bundle.EditRequisitoLabel_expiracion}" for="expiracion" />
+                        <p:inputText id="expiracion" value="#{requisitoController.selected.expiracion}" title="#{bundle.EditRequisitoTitle_expiracion}" required="true" requiredMessage="#{bundle.EditRequisitoRequiredMessage_expiracion}"/>
+                        <p:outputLabel value="#{bundle.EditRequisitoLabel_estadorequisito}" for="estadorequisito" />
+                        <p:inputText id="estadorequisito" value="#{requisitoController.selected.estadorequisito}" title="#{bundle.EditRequisitoTitle_estadorequisito}" required="true" requiredMessage="#{bundle.EditRequisitoRequiredMessage_estadorequisito}"/>
+                        <p:outputLabel value="#{bundle.EditRequisitoLabel_tipoRequisito}" for="tipoRequisito" />
+                        <p:selectOneMenu id="tipoRequisito" value="#{requisitoController.selected.tipoRequisito}" required="true" requiredMessage="#{bundle.EditRequisitoRequiredMessage_tipoRequisito}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoRequisitoController.itemsAvailableSelectOne}"
+                                           var="tipoRequisitoItem"
+                                           itemValue="#{tipoRequisitoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{requisitoController.update}" value="#{bundle.Save}" update="display,:RequisitoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RequisitoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RequisitoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

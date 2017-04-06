@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PasoViewDlg" widgetVar="PasoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPasoTitle}">
+            <h:form id="PasoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pasoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPasoLabel_pasoPK_idPaso}"/>
+                        <h:outputText value="#{pasoController.selected.pasoPK.idPaso}" title="#{bundle.ViewPasoTitle_pasoPK_idPaso}"/>
+                        <h:outputText value="#{bundle.ViewPasoLabel_descripcionpaso}"/>
+                        <h:outputText value="#{pasoController.selected.descripcionpaso}" title="#{bundle.ViewPasoTitle_descripcionpaso}"/>
+                        <h:outputText value="#{bundle.ViewPasoLabel_fechainicio}"/>
+                        <h:outputText value="#{pasoController.selected.fechainicio}" title="#{bundle.ViewPasoTitle_fechainicio}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPasoLabel_fechasfinal}"/>
+                        <h:outputText value="#{pasoController.selected.fechasfinal}" title="#{bundle.ViewPasoTitle_fechasfinal}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPasoLabel_estadopaso}"/>
+                        <h:outputText value="#{pasoController.selected.estadopaso}" title="#{bundle.ViewPasoTitle_estadopaso}"/>
+                        <h:outputText value="#{bundle.ViewPasoLabel_tipoPaso}"/>
+                        <h:outputText value="#{pasoController.selected.tipoPaso}" title="#{bundle.ViewPasoTitle_tipoPaso}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PasoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
